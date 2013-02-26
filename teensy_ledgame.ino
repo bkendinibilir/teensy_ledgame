@@ -11,8 +11,8 @@
 #define APP_TIMEOUT 900000 
 // 900000 = 15 * 60 * 1000ms = 15mins
 
-#define PIN_BTN PIN_D7
-#define PIN_LED PIN_D6
+#define PIN_BTN PIN_C7
+#define PIN_LED PIN_D1
 #define PIN_LED_L1 PIN_F4
 #define PIN_LED_L2 PIN_F5
 #define PIN_LED_L3 PIN_F6
@@ -240,6 +240,7 @@ void loop()
   int a;
   
   if(state > 1 && sinceAnyAction > APP_TIMEOUT) {
+    // reset to stage 0
     sinceAnyAction = 0;
     state = 0;
   }
@@ -247,28 +248,35 @@ void loop()
   switch(state) {
     case 0:
       //sleepNow();
-   
+      digitalWrite(PIN_LED_L1, LOW);
+      digitalWrite(PIN_LED_L2, LOW);
+      digitalWrite(PIN_LED_L3, LOW);
+      digitalWrite(PIN_LED_L4, LOW); 
       blink_led(3, 50, 50);
       read_button();
 
       state++;
     case 1:
       if(check_number(1975) == 1) {
+        digitalWrite(PIN_LED_L1, HIGH);
         state++;
       }
       break;
     case 2:
       if(check_4series(13, 21, 34, 55) == 1) {
+        digitalWrite(PIN_LED_L2, HIGH);
         state++;
       }  
       break;
     case 3:
       if(check_4series(7, 11, 13, 17) == 1) {
+        digitalWrite(PIN_LED_L3, HIGH);
         state++;
       }  
       break;
     case 4:
       if(check_4series(1, 2, 6, 24) == 1) {
+        digitalWrite(PIN_LED_L4, HIGH);
         state++;
       }  
       break;

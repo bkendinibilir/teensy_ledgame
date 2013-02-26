@@ -13,10 +13,10 @@
 
 #define PIN_BTN PIN_C7
 #define PIN_LED PIN_D1
-#define PIN_LED_L1 PIN_F4
-#define PIN_LED_L2 PIN_F5
-#define PIN_LED_L3 PIN_F6
-#define PIN_LED_L4 PIN_F7
+#define PIN_LED_L1 PIN_F7
+#define PIN_LED_L2 PIN_F6
+#define PIN_LED_L3 PIN_F5
+#define PIN_LED_L4 PIN_F4
 
 Bounce button = Bounce(PIN_BTN, 25);
 elapsedMillis sinceButton;
@@ -281,7 +281,7 @@ void loop()
       }  
       break;
     case 5:
-      blink_morse("N 32 05 0E3   O 008 0A 166", MORSECODE_UNIT);
+      blink_morse("N 32 05 1E6   O 008 0A 1A3", MORSECODE_UNIT);
       state++;
     case 6:
       if(read_button() == 1) {
